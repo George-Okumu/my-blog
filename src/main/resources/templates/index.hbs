@@ -1,4 +1,13 @@
 {{#partial "content"}}
+    {{#if posts}}<!-- if posts exists-->
+        {{#each posts}}<!-- then loop thru each post-->
+            <p>Current Post:</p>
+            <p>{{ content}}</p><!-- and show each post-->
+        {{/each}}
+        {{else}}
+        <p>No posts</p>
+
+    {{/if}}
     <form action="/posts/new" method="POST">
         <label for="content"> Post Description</label>
         <input name="content" id="content" type="text">

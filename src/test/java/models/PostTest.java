@@ -14,11 +14,22 @@ public class PostTest {
 
     @After
     public void tearDown() throws Exception {
+        Post.clearAllPosts();
     }
 
     @Test
     public void newPostObjectGetsCorrectlyCreated_true() throws Exception {
         Post testPost = new Post("Day:1 Intro");
-        assertEquals("Day:1 Intro", testPost.getContent());
+        Post otherPost = new Post ("How to pair successfully");
+        assertEquals(2, Post.getAll().size());
+    }
+
+    @Test
+    public void AllPostsContainsAllPosts_true() {
+        Post testPost = new Post("Day 1: Intro");
+        Post otherPost = new Post ("How to pair successfully");
+        assertTrue(Post.getAll().contains(testPost));
+        assertTrue(Post.getAll().contains(otherPost));
+
     }
 }
