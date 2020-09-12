@@ -2,6 +2,7 @@ import models.Post;
 import spark.ModelAndView;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,7 +14,9 @@ public class App {
         staticFileLocation("/public");
 
         get("/", (request, response) -> {
-            Map<String, Object> model = new HashMap<String, Object>();
+            Map<String, Object> model = new HashMap<>();
+            ArrayList<Post> posts = Post.getAll();// this method returns all posts
+            model.put("posts", posts);
             return new ModelAndView(model, "index.hbs");
         }, new HandlebarsTemplateEngine());
 
