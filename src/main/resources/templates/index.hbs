@@ -1,19 +1,14 @@
 {{#partial "content"}}
-    {{#if posts}}<!-- if posts exists-->
-        {{#each posts}}<!-- then loop thru each post-->
-            <p>Current Post:</p>
-            <p>{{ content}}</p><!-- and show each post-->
-        {{/each}}
-        {{else}}
-        <p>No posts</p>
+    <h1>Post list!</h1>
 
+    {{#if posts}} <!--if posts exist, then -->
+    {{#each posts}} <!--loop-->
+    <p>Current post:</p>
+    <p>{{ content }} <a href="/posts/{{id}}">read more...</a></p>
+    {{/each}}
+    {{else}} <!--no posts!-->
+    <p>No posts!</p>
     {{/if}}
-    <form action="/posts/new" method="POST">
-        <label for="content"> Post Description</label>
-        <input name="content" id="content" type="text">
-        <button type="submit" class="btn btn-default">Add post</button>
-    </form>
 
 {{/partial}}
-
 {{> layout.hbs}}
