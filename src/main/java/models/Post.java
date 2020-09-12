@@ -1,25 +1,55 @@
 package models;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Post {
     private String content;
-    public static ArrayList<Post> instances = new ArrayList<>();
+    private static ArrayList<Post> instances = new ArrayList<>();
+    private boolean published;
+    private LocalDateTime createdAt;
+    private int id;
 
-    public Post(String content) {
+
+    public Post (String content){
         this.content = content;
         instances.add(this);
+        this.published = false; //also new
+        this.createdAt = LocalDateTime.now();
+        this.id = instances.size();
     }
 
     public String getContent() {
         return content;
     }
-    // this static method returns all posts
-    //makes the posts to be displayed in the index.hbs
+
     public static ArrayList<Post> getAll(){
         return instances;
     }
+
     public static void clearAllPosts(){
         instances.clear();
+    }
+
+    public boolean getPublished(){ //new too
+        return this.published;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public static Post findById(int id){
+        return instances.get(id-1);
+    }
+    public void update(String content) {
+        this.content = content;
+    }
+    public void deletePost(){
+        instances.remove(id-1);
     }
 }
